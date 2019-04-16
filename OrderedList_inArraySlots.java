@@ -18,22 +18,42 @@ public class OrderedList_inArraySlots
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
         this();  // violates the directions for this hw
-        
-        System.out.println( 
-            "Change this to report on progress."
-          + System.lineSeparator()
-          + "You were going to do that even without prompting, right?"
-          );
+
+	for (int i = 0; i < unordered.size(); i++) {
+	    int curValue = unordered.get(i);
+	    int minIndex = champIndex( unordered, i);
+	    int minValue = unordered.get(minIndex);
+	
+	    unordered.set( minIndex, curValue);
+	    unordered.set( i, minValue);
+
+	    System.out.println( "swapped "
+			       + curValue + " with " + minValue          
+			       + System.lineSeparator()
+			       + unordered
+			       );
+	}
+	
+	list_iAS = unordered;
     }
 
 
     /** 
       helper function for constructor
-      Write good English here, reflecting good thinking.
-      @return ??
+      iterates through the ArrayList starting at startIndex
+      @return the index of the smallest element
      */
-     private int champIndex() {
-        return 0;  // replace this line
+    private int champIndex( ArrayList<Integer> challengers, int startIndex) {
+	 int minValue = Integer.MAX_VALUE;
+	 int minIndex = 0;
+
+	 for (int i = startIndex; i < challengers.size(); i++) {
+	     if (challengers.get(i) != null && challengers.get(i) < minValue) {
+		 minValue = challengers.get(i);
+		 minIndex = i;
+	     }
+	 }
+	 return minIndex;
      }
 
 
